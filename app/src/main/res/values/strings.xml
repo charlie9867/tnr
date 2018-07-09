@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TNR</string>
+    <string name="logInBtn">로그인하기</string>
+    <string name="ID">ID</string>
+    <string name="Password">Password</string>
+    <string name="join">회원가입</string>
+    <string name="searchId">아이디 / 비밀번호 찾기</string>
+</resources>
