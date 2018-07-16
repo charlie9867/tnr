@@ -19,8 +19,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.logInBtn)
-    void onButtonClicked() {
+    void onLogInButtonClicked() {
         Intent intent = new Intent(this, FragmentMapActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.joinTv)
+    void onJoinTvClicked() {
+        Intent intent = new Intent(this, JoinActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.findTv)
+    void onFindTvClicked() {
+        Intent intent = new Intent(this, ListActivity.class);
         startActivity(intent);
     }
 }

@@ -38,6 +38,7 @@ public class Fragement1 extends Fragment {
     public void onStart(){
         super.onStart();
         mMapContext.onStart();
+
     }
     @Override
     public void onResume() {

@@ -9,4 +9,6 @@
     <string name="IDWithEmail">ID(E - mail)</string>
     <string name="confirm">확인</string>
     <string name="joinBtn">가입하기</string>
+    <string name="str_done">완료</string>
+
 </resources>

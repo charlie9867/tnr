@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".FragmentMapActivity" />
-        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".JoinActivity" />
+        <activity android:name=".ChoiceActivity" />
+        <activity android:name=".ListActivity"></activity>
+
     </application>
 
 </manifest>
