@@ -25,8 +25,12 @@
         <activity android:name=".FragmentMapActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".ChoiceActivity" />
-        <activity android:name=".ListActivity"></activity>
-
+        <activity android:name=".ListActivity" />
+        <activity android:name=".DistrictSearchActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".StreetSearchActivity"></activity>
     </application>
 
 </manifest>

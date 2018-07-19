@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_url">http://49.236.136.62</string>
+    <string name="address_list">/location/select/%1$s</string>
+</resources>

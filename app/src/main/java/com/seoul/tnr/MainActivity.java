@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.logInBtn)
     void onLogInButtonClicked() {
-        Intent intent = new Intent(this, FragmentMapActivity.class);
+        Intent intent = new Intent(this, DistrictSearchActivity.class);
         startActivity(intent);
     }
 

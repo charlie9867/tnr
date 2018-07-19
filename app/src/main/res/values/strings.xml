@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">TNR</string>
     <string name="logInBtn">로그인하기</string>
     <string name="ID">ID</string>
@@ -10,5 +11,8 @@
     <string name="confirm">확인</string>
     <string name="joinBtn">가입하기</string>
     <string name="str_done">완료</string>
-
+    <string name="todo">TODO</string>
+    <string name="search">검색</string>
+    <string name="searchMenuDistrictEx">ex) 용산구, 서대문구, ....</string>
+    <string name="searchMenuStreetEx">ex) 서초동, 천호동, ....</string>
 </resources>
