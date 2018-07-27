@@ -35,6 +35,10 @@ public class NMapPOIflagType {
 	public static final int FROM = DIRECTION_POI_BASE + 1;
 	public static final int TO = FROM + 1;
 
+	// CAT POI icons: Cat
+	private static final int CAT_POI_BASE = 0x0300;
+	public static final int CAT = CAT_POI_BASE +1;
+
 	// end of single marker icon
 	public static final int SINGLE_MARKER_END = 0x04FF;
 

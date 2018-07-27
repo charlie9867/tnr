@@ -249,10 +249,10 @@ public class StreetSearchActivity extends BaseActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(activity, ImageAddActivity.class);
+                    /*Intent intent = new Intent(activity, ImageAddActivity.class);
                     intent.putExtra("DISTRICT", district);
                     intent.putExtra("STREET", streetArr.get(position));
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
             return convertView;

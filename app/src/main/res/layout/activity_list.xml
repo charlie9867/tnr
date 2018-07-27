@@ -19,7 +19,8 @@
             android:scaleType="center"
             android:layout_centerHorizontal="true"
             android:background="#ffffffff"
-            android:layout_alignParentRight="true"
+
+            android:layout_alignParentLeft="true"
             android:layout_above="@+id/linearLayout"
             app:srcCompat="@android:drawable/ic_input_add" />
 
