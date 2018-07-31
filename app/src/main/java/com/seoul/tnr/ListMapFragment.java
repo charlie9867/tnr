@@ -1,6 +1,7 @@
 package com.seoul.tnr;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +10,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.nhn.android.maps.NMapCompassManager;
@@ -31,6 +34,7 @@ import com.nhn.android.mapviewer.overlay.NMapCalloutOverlay;
 import com.nhn.android.mapviewer.overlay.NMapMyLocationOverlay;
 import com.nhn.android.mapviewer.overlay.NMapOverlayManager;
 import com.nhn.android.mapviewer.overlay.NMapPOIdataOverlay;
+import com.seoul.cms.helper.CustomDialog;
 import com.seoul.cms.map.NMapCalloutCustomOldOverlay;
 import com.seoul.cms.map.NMapCalloutCustomOverlayView;
 import com.seoul.cms.map.NMapFragment;
@@ -52,6 +56,9 @@ public class ListMapFragment extends NMapFragment implements NMapView.OnMapState
     private NMapCompassManager mapCompassManager;
     private NMapMyLocationOverlay mapMyLocationOverlay;
 
+    private CustomDialog customDialog;
+
+    private boolean newPointer = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -149,6 +156,8 @@ public class ListMapFragment extends NMapFragment implements NMapView.OnMapState
         }
     }
 
+
+
     private void makePoiData() {
         //NGeoPoint currentPoint = new NGeoPoint(127.0630205, 37.5091300);
         //mapController.setMapCenter(currentPoint);
@@ -157,6 +166,7 @@ public class ListMapFragment extends NMapFragment implements NMapView.OnMapState
         poiData.addPOIitem(127.0630205, 37.5091300, "현재 위치", NMapPOIflagType.CAT, 1);
         poiData.addPOIitem(127.061, 37.51, "도착 위치", NMapPOIflagType.CAT, 2);
         poiData.endPOIdata();
+
 
         NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
 
@@ -171,6 +181,21 @@ public class ListMapFragment extends NMapFragment implements NMapView.OnMapState
         @Override
         public void onCalloutClick(NMapPOIdataOverlay poiDataOverlay, NMapPOIitem item) {
             Toast.makeText(context, Integer.toString(item.getId()), Toast.LENGTH_SHORT).show();
+            customDialog = new CustomDialog(context,
+                    "날짜가 나오고",
+                    "여기도 날짜",
+                    "요거는 상태",
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Coraz%C3%B3n.svg/1200px-Coraz%C3%B3n.svg.png",
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(context, "hello", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            customDialog.setCancelable(true);
+            customDialog.show();
+
+
         }
 
         @Override
@@ -182,28 +207,34 @@ public class ListMapFragment extends NMapFragment implements NMapView.OnMapState
     NMapView.OnMapViewTouchEventListener OnMapViewTouchEventListener = new NMapView.OnMapViewTouchEventListener() {
         @Override
         public void onLongPress(NMapView nMapView, MotionEvent motionEvent) {
-            int marker1 = NMapPOIflagType.PIN;
+            if (newPointer) {
+                int marker1 = NMapPOIflagType.PIN;
+                Log.e("터치", Double.toString(motionEvent.getX()) + " / " + Double.toString(motionEvent.getY()));
+                // set POI data
+                NMapPOIdata poiData = new NMapPOIdata(1, mapViewerResourceProvider);
 
-            // set POI data
-            NMapPOIdata poiData = new NMapPOIdata(1, mapViewerResourceProvider);
+                poiData.beginPOIdata(1);
+                NMapPOIitem item = poiData.addPOIitem(null, "Touch & Drag to Move", marker1, 0);
 
-            poiData.beginPOIdata(1);
-            NMapPOIitem item = poiData.addPOIitem(null, "Touch & Drag to Move", marker1, 0);
+                // initialize location to the center of the map view.
+                NGeoPoint point = mapView.getMapProjection().fromPixels((int) motionEvent.getX(), (int) motionEvent.getY());
 
-            // initialize location to the center of the map view.
-            item.setPoint(mapController.getMapCenter());
+                item.setPoint(point);
 
-            // set floating mode
-            item.setFloatingMode(NMapPOIitem.FLOATING_TOUCH | NMapPOIitem.FLOATING_DRAG);
+                // set floating mode
+                item.setFloatingMode(NMapPOIitem.FLOATING_TOUCH | NMapPOIitem.FLOATING_DRAG);
 
-            // show right button on callout
-            item.setRightButton(true);
+                // show right button on callout
+                item.setRightButton(true);
 
-            poiData.endPOIdata();
+                poiData.endPOIdata();
 
-            // create POI data overlay
-            NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
-            poiDataOverlay.setOnFloatingItemChangeListener(onPOIdataFloatingItemChangeListener);
+                // create POI data overlay
+                NMapPOIdataOverlay poiDataOverlay = mapOverlayManager.createPOIdataOverlay(poiData, null);
+
+                poiDataOverlay.setOnFloatingItemChangeListener(onPOIdataFloatingItemChangeListener);
+                newPointer = false;
+            }
         }
 
         @Override

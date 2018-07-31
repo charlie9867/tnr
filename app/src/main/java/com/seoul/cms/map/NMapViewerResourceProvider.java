@@ -392,7 +392,7 @@ public class NMapViewerResourceProvider extends NMapResourceProvider implements
 			NMapPOIitem poiItem = (NMapPOIitem)item;
 
 			if (poiItem.showRightButton()) {
-				return mContext.getResources().getString(R.string.str_done);
+				return mContext.getResources().getString(R.string.strDone);
 			}
 		}
 

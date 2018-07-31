@@ -1,8 +1,15 @@
 package com.seoul.tnr;
 
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
@@ -13,6 +20,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+
 public class ListActivity extends AppCompatActivity {
 
 
@@ -21,11 +29,9 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
-
         Fragment fr = new ListMapFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-
         transaction.add(R.id.listFg, fr).commit();
 
     }
@@ -54,8 +60,5 @@ public class ListActivity extends AppCompatActivity {
         Toast.makeText(this, "common", Toast.LENGTH_SHORT).show();
 
     }
-
-
-
 
 }
